@@ -1,0 +1,72 @@
+:host {
+  display: grid;
+  grid-template-columns: auto 300px auto;
+  margin-bottom: 10px;
+
+}
+
+mat-form-field, div, fieldset {
+  grid-column: 2;
+
+}
+
+
+fieldset {
+  width: 100%;
+  flex: 1 1 100%;
+  max-width: 540px;
+  min-width: 240px;
+  border-style: none;
+  padding: 0px;
+  background: transparent;
+  text-align: center
+}
+
+form.checkout {
+  min-width: 240px;
+  width: 100%;
+}
+
+button {
+  flex: 0 1 auto;
+  align-self: flex-end
+}
+
+.StripeElement {
+  margin: 1rem 0 1rem;
+  background-color: white;
+  padding: 8px 12px;
+  border-radius: 4px;
+  border: 1px solid transparent;
+  box-shadow: 0 1px 3px 0 #e6ebf1;
+  -webkit-transition: box-shadow 150ms ease;
+  transition: box-shadow 150ms ease;
+}
+
+.StripeElement.focus {
+  box-shadow: 0 1px 3px 0 #cfd7df
+}
+
+.StripeElement.invalid {
+  border-color: #fa755a
+}
+
+.StripeElement.webkit-autofill {
+  background-color: #fefde5 !important
+}
+
+.notification.is-success {
+  margin: 30px 0px;
+  background: lightgreen;
+  color: darkgreen;
+  padding: 20px;
+  border-radius: 3px;
+}
+
+.notification.is-danger {
+  margin: 30px 0px;
+  background: #ffc988;
+  color: #7a4300;
+  padding: 20px;
+  border-radius: 3px;
+}

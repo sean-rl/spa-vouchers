@@ -1,0 +1,16 @@
+<div spa-voucher-home-article>
+  <div image>
+    <div *ngIf="article?.image && article.image!==''" [style.background-image]="imgUrl('url('+(article?.image | news_img)+')')"></div>
+    <div *ngIf="!(article?.image && article.image!=='') && article?.venue" [style.background-image]="imgUrl('url('+(article?.venue | v_img_id)+')')"></div>
+  </div>
+  <div content>
+    <div>
+      <div heading>
+        <div>{{article?.heading}}</div>
+      </div>
+      <div about>
+        <div>{{article?.about}}</div>
+      </div>
+    </div>
+  </div>
+</div>

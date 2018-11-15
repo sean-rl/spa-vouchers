@@ -1,0 +1,5 @@
+<ng-container *ngIf="vouchers">
+    <ng-container *ngFor="let voucher of vouchers;let f=first">
+      <voucher-tile [class.first]="!f"  [voucher]="voucher"></voucher-tile>
+    </ng-container>
+  </ng-container>

@@ -1,0 +1,21 @@
+<div spa-voucher-voucher-tile>
+  <div month>
+    <div>{{(voucher && voucher.recipientDate && voucher.recipientDate.toDate ? voucher?.recipientDate.toDate() : voucher?.recipientDate) | date:'MMMM'}}</div>
+  </div>
+  <div day>
+    <div>{{(voucher && voucher.recipientDate && voucher.recipientDate.toDate ? voucher?.recipientDate.toDate() : voucher?.recipientDate) | date:'d'}}</div>
+  </div>
+  <div year>
+    <div>{{(voucher && voucher.recipientDate && voucher.recipientDate.toDate ? voucher?.recipientDate.toDate() : voucher?.recipientDate) | date:'yyyy'}}</div>
+  </div>
+  <div messsage>
+      <div *ngIf="voucher && voucher.recipientMessage && voucher.recipientMessage.trim().length>0">{{voucher?.recipientMessage}}</div>
+      <div *ngIf="!(voucher && voucher.recipientMessage && voucher.recipientMessage.trim().length>0)"><small><em>no message</em></small></div>
+    </div>
+  <div code>
+    <div>{{voucher?.voucherCode}}</div>
+  </div>
+  <div price>
+    <div>£{{voucher?.voucherAmount/100 | number:'0.0-0' }}</div>
+  </div>
+</div>

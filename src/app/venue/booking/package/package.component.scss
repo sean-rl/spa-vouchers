@@ -1,0 +1,84 @@
+:host {
+  display: grid;
+  grid-template-columns: auto 300px auto;
+  margin-bottom: 10px;
+}
+div[spa-voucher-package] {
+  grid-column: 2;
+  display: grid;
+  grid-template-columns: 300px;
+  grid-template-rows: auto auto auto auto auto;
+  min-width: 280px;
+  max-width: 300px;
+  // background: #ddd;
+  margin: 0px;
+}
+
+div[name] {
+  grid-column: 1 / 2;
+  grid-row: 2;
+  display: grid;
+  font: 400 26px/28px Raleway, sans-serif;
+}
+
+div[indicators] {
+  grid-column: 1 / 2;
+  grid-row: 3;
+  display: grid;
+}
+
+div[markdown] {
+  grid-column: 1 / 2;
+  grid-row: 4;
+  display: grid;
+
+  p {
+    display: block;
+    margin-block-start: .5em;
+    margin-block-end: .5em;
+    margin-inline-start: 0px;
+    margin-inline-end: 0px;
+  }
+
+  :empty(p) {
+    display: none;
+  }
+
+}
+
+div[pricing] {
+  grid-column: 1 / 2;
+  grid-row: 5;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+  padding: 0;
+  grid-column-gap: 2px;
+
+  [day-price] {
+    background-color: #838689;
+    padding: 5px;
+    text-align: center;
+
+    [weekday] {
+      font-size: 8px;
+      font-weight: 100;
+      line-height: 1;
+      color: rgba(0, 0, 0, .68);
+      text-transform: uppercase;
+      margin-bottom: 2px;
+    }
+
+    [price] {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1;
+      color: rgba(0, 0, 0, .98);
+    }
+  }
+}
+
+:host-context([no-pricing]) {
+  div[pricing] {
+    display:none;
+  }
+}

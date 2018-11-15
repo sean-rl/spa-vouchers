@@ -1,0 +1,50 @@
+<div spa-voucher-calendar>
+  <ng-container *ngIf="month">
+    <div spa-voucher-month>
+      <div month>
+        <div>{{['January','February','March','April','May','June','July','August','September','October','November','December'][month.month]}}</div>
+      </div>
+      <div year>
+        <div>{{month.year}}</div>
+      </div>
+      <div prev>
+        <div>
+          <mat-icon *ngIf="idxMonth>0" color="accent" (click)="prevMonth()">chevron_left</mat-icon>
+          <mat-icon *ngIf="idxMonth===0">chevron_left</mat-icon>
+        </div>
+      </div>
+      <div next>
+        <div>
+          <mat-icon *ngIf="idxMonth<calendar.length-1" color="accent" (click)="nextMonth()">chevron_right</mat-icon>
+          <mat-icon *ngIf="idxMonth>=calendar.length-1">chevron_right</mat-icon>
+        </div>
+      </div>
+      <div day-labels>
+        <div>MON</div>
+        <div>TUE</div>
+        <div>WED</div>
+        <div>THU</div>
+        <div>FRI</div>
+        <div>SAT</div>
+        <div>SUN</div>
+      </div>
+      <div days>
+        <div offset *ngFor="let offsetEmpties of getMonthOffsetSpaces(month.offset)"> </div>
+        <ng-container *ngFor="let day of month?.days; let index=index;">
+          <ng-container *ngIf="day>nowDate && selectedPackage?.pricing[(index+month.offset) % 7]; else elseTemplate">
+            <div day (click)="dateSelected.emit(day); valueSelected.emit(selectedPackage?.pricing[(index+month.offset) % 7]);selectedDate=day" [class.active]="day===selectedDate">
+              <div day-of-month>{{day | date:'d'}}</div>
+              <div price>£{{selectedPackage?.pricing[(index+month.offset) % 7] | number:'0.0-0'}}</div>
+            </div>
+          </ng-container>
+          <ng-template #elseTemplate>
+            <div day>
+              <div day-of-month unavail>{{day | date:'d'}}</div>
+              <div price unavail>-</div>
+            </div>
+          </ng-template>
+        </ng-container>
+      </div>
+    </div>
+  </ng-container>
+</div>

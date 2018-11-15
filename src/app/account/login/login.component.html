@@ -1,0 +1,33 @@
+<ui-banner>Sign in to your <b>Spa Voucher</b> account</ui-banner>
+<div spa-voucher-login>
+  <div email>
+    <div>
+    </div>
+    <mat-form-field>
+      <mat-label>Email</mat-label>
+      <input matInput type="email" [(ngModel)]="model.email">
+    </mat-form-field>
+  </div>
+  <div password>
+    <div>
+      <mat-form-field>
+        <mat-label>Password</mat-label>
+        <input matInput type="password" [(ngModel)]="model.password">
+      </mat-form-field>
+    </div>
+  </div>
+  <div signin>
+    <div>
+      <button mat-flat-button color="accent" (click)="loginEmail()">Sign In</button>
+    </div>
+  </div>
+  <div divider>
+    <div>or sign in using</div>
+  </div>
+  <div social>
+    <div>
+      <span (click)="loginFacebook()"><img src="../../../../assets/fb.png" alt="sign in with facebook"></span>
+      <span (click)="loginGoogle()"><img src="../../../../assets/gp.png" alt="sign in with google+"></span>
+    </div>
+  </div>
+</div>

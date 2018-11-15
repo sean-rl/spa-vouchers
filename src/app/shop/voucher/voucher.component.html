@@ -1,0 +1,59 @@
+<div spa-voucher-shop-item>
+  <div type>
+      <div title [class.active]="voucherType==='electronic'" (click)="voucherType='electronic'"> e Voucher </div>
+      <div title [class.active]="voucherType==='gift'" (click)="voucherType='gift'"> Gift Voucher </div>
+      <div title [class.active]="voucherType==='box'" (click)="voucherType='box'"> Gift Box </div>
+  </div>
+  <div description>
+    <div>
+      <ng-container *ngIf="voucherType==='electronic'">
+        <div>eVouchers can be purchased for any monetary value.</div>
+        <div>They are delivered instantly or at a time of your choosing and do not incur any booking or delivery fees.</div>
+      </ng-container>
+      <ng-container *ngIf="voucherType==='gift'">
+        <div>Our Gift Vouchers are lovely, beautifully designed and printed on high quality, thick card.</div>
+        <div>These vouchers make an ideal gift to send directly to your recipient(s) or to place inside a greeting card.</div>
+        <div>Our gift vouchers are completely free of charge, however postage is charged at £2.99.</div>
+        <div>Order before 1pm for same day dispatch.</div>
+      </ng-container>
+      <ng-container *ngIf="voucherType==='box'">
+        <div>Our Spa Voucher Gift Boxes are beautifully presented and come complete with both your gift voucher and an artistically designed greeting card.</div>
+        <div>Spa Voucher Gift Boxes are ideal if you would like your voucher posted directly to the recipient.</div>
+        <div>Gift boxes cost an additional £5 plus £2.99 delivery. Order before 1pm for same day dispatch.</div>
+      </ng-container>
+    </div>
+  </div>
+  <div recipient>
+      <mat-form-field>
+        <input matInput placeholder="Recipient Name" type="text" class="form-control" id="name" [(ngModel)]="name" /> </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Recipient Email" type="email" class="form-control" id="email" [(ngModel)]="email" /> </mat-form-field>
+      <!-- <mat-form-field color="primary">
+          <input matInput [min]="minDate" [max]="maxDate" placeholder="Recipient Date" [matDatepicker]="recipientdate" class="form-control" id="rd" [value]="rdate" (dateInput)="rdate=$event.value" (dateChange)="rdate=$event.value">
+          <mat-datepicker-toggle matSuffix [for]="recipientdate"></mat-datepicker-toggle>
+          <mat-datepicker #recipientdate color="accent"></mat-datepicker>
+        </mat-form-field> -->
+      <mat-form-field>
+        <input matInput [disabled]="voucherType==='electronic'" placeholder="Recipient Address" type="text" class="form-control" id="addr" [(ngModel)]="address" />
+      </mat-form-field>
+      <mat-form-field>
+        <input matInput placeholder="Recipient Message" type="text" class="form-control" id="message" [(ngModel)]="message" />
+      </mat-form-field>
+  </div>
+  <div value>
+    <div>
+      <mat-form-field>
+        <mat-select placeholder="Voucher Amount" id="amount" required [(ngModel)]="amount">
+          <mat-option *ngFor="let voucherValue of amounts" [value]="voucherValue">{{voucherValue | stripe | currency:'GBP' }} </mat-option>
+        </mat-select>
+        <span matSuffix *ngIf="voucherType==='gift'">+ £2<small>.99</small></span>
+        <span matSuffix *ngIf="voucherType==='box'">+ £7<small>.99</small></span>
+      </mat-form-field>
+    </div>
+  </div>
+  <div action>
+    <div>
+      <button mat-raised-button color="accent" (click)="addVoucher()">Add Voucher To Order</button>
+    </div>
+  </div>
+</div>

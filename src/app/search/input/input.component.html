@@ -1,0 +1,221 @@
+<ng-container *ngIf="initialized">
+<form search-form>
+  <div search-field>
+    <div style="flex:1 1 0px;flex-direction: row;flex-wrap: nowrap">
+      <mat-form-field search-field>
+        <mat-label>Search</mat-label>
+        <div heading-selection><span style="opacity: 0" *ngIf="searchControl?.value?.tag">{{searchControl?.value?.tag.slice(0,(searchControl?.value?.text && searchControl?.value?.text.length ) ? searchControl?.value?.text.length : 0)}}</span><span *ngIf="searchControl?.value?.tag" extra [class.editing]="autoCompleteSearch.isOpen">{{searchControl?.value?.tag.slice(searchControl?.value?.text.length)}}</span></div>
+        <input type="text" matInput placeholder="Postcode, venue, region or town..." [formControl]="searchControl" [matAutocomplete]="autoCompleteSearch">
+        <div matSuffix *ngIf="searchControl.value?.tag">
+          <div suffix>
+            <button mat-icon-button color="primary" *ngIf="searchControl.value?.tag" mat-icon-button aria-label="Clear" (click)="reset()">
+              <mat-icon>close</mat-icon>
+            </button>
+          </div>
+        </div>
+        <mat-autocomplete #autoCompleteSearch="matAutocomplete" autoActiveFirstOption [displayWith]="displaySearchSelectionFn">
+          <ng-container *ngIf="autoCompleteLocations && autoCompleteLocations.length && autoCompleteLocations.length>0">
+          <div divider></div>
+          <div suffix>
+            <div heading>Places</div>
+            <div cols-end>
+              <div col-info *ngIf="screenSize!=='xs'">
+                <div info><small>NEAREST</small></div>
+              </div>
+              <div spacing></div>
+              <div col-info>
+                <div info><small>FOUND</small></div>
+              </div>
+              <div spacing></div>
+            </div>
+          </div>
+          <mat-option option *ngFor="let group of autoCompleteLocations; let l=last" [value]="getLocationValue( group, criteria)">
+            <div suffix>
+              <div heading>{{group.tag}}</div>
+              <div cols-end>
+                <div col-info *ngIf="screenSize!=='xs'">
+                  <div data>{{group?.near | number:'0.1-1'}}</div>
+                </div>
+                <div spacing></div>
+                <div col-info>
+                  <div data>{{group.count}}</div>
+                </div>
+              </div>
+            </div>
+          </mat-option>
+        </ng-container>
+        <ng-container *ngIf="autoCompleteVenues && autoCompleteVenues.length && autoCompleteVenues.length>0">
+          <div divider></div>
+          <div suffix>
+            <div heading>Venues</div>
+            <div cols-end>
+              <div col-info>
+                <div info><small>RATING</small></div>
+                <!-- <mat-icon ico-sm>grade</mat-icon> -->
+              </div>
+              <div spacing></div>
+            </div>
+          </div>
+          <mat-option option *ngFor="let group of autoCompleteVenues; let l=last" [value]="getVenueValue( group, criteria)" [routerLink]="'/venue/'+group?.dash">
+            <div suffix>
+              <div heading>{{group.name}}</div>
+              <div cols-end>
+                <div col-info>
+                  <div data>{{group.rating}}</div>
+                </div>
+              </div>
+            </div>
+          </mat-option>
+          </ng-container>
+        </mat-autocomplete>
+      </mat-form-field>
+    </div>
+  </div>
+</form>
+<mat-menu #typeMenu="matMenu" [overlapTrigger]="false" panelClass="menu-panel">
+  <button mat-menu-item filter-criteria (click)="search.MinNights(0);search.MaxNights(99)">
+    <mat-icon mat-list-icon>{{(criteria?.maxNights===99 && criteria?.minNights===0) ? 'check' : ''}}</mat-icon>Any Package
+  </button> <button mat-menu-item filter-criteria (click)="search.MinNights(0);search.MaxNights(0)">
+    <mat-icon mat-list-icon>{{(criteria?.maxNights===0) ? 'check' : ''}}</mat-icon>Spa Day
+  </button> <button mat-menu-item filter-criteria (click)="search.MinNights(1);search.MaxNights(99)">
+    <mat-icon mat-list-icon>{{(criteria?.minNights>0) ? 'check' : ''}}</mat-icon>Spa Break
+  </button>
+</mat-menu>
+<mat-menu #distMenu="matMenu" [overlapTrigger]="false" panelClass="menu-panel">
+  <button mat-menu-item filter-criteria (click)="search.Distance(5)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 5) ? 'check' : ''}}</mat-icon>5 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(10)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 10) ? 'check' : ''}}</mat-icon>10 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(15)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 15) ? 'check' : ''}}</mat-icon>15 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(20)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 20) ? 'check' : ''}}</mat-icon>20 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(25)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 25) ? 'check' : ''}}</mat-icon>25 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(30)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 30) ? 'check' : ''}}</mat-icon>30 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(35)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 35) ? 'check' : ''}}</mat-icon>35 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(40)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 40) ? 'check' : ''}}</mat-icon>40 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(45)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 45) ? 'check' : ''}}</mat-icon>45 miles
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.Distance(50)">
+    <mat-icon mat-list-icon>{{(criteria?.maxDistance === 50) ? 'check' : ''}}</mat-icon>50 miles
+  </button>
+</mat-menu>
+<mat-menu #fromMenu="matMenu" [overlapTrigger]="false" panelClass="menu-panel">
+    <button mat-menu-item filter-criteria (click)="search.MinPrice(0)">
+        <mat-icon mat-list-icon>{{(criteria?.minPrice === 0) ? 'check' : ''}}</mat-icon>No min{{screenSize!=='xs'?'imum':''}} price
+      </button>
+      <button mat-menu-item filter-criteria (click)="search.MinPrice(50)" *ngIf="criteria?.maxPrice>50">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 50) ? 'check' : ''}}</mat-icon>£50
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MinPrice(100)" *ngIf="criteria?.maxPrice>100">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 100) ? 'check' : ''}}</mat-icon>£100
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MinPrice(150)" *ngIf="criteria?.maxPrice>150">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 150) ? 'check' : ''}}</mat-icon>£150
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MinPrice(200)" *ngIf="criteria?.maxPrice>200">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 200) ? 'check' : ''}}</mat-icon>£200
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MinPrice(250)" *ngIf="criteria?.maxPrice>250">
+    <mat-icon mat-list-icon>{{(criteria?.minPrice === 250) ? 'check' : ''}}</mat-icon>£250
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.maxPrice <= 50" disabled>
+    <mat-icon mat-list-icon></mat-icon>£50
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.maxPrice <= 100" disabled>
+    <mat-icon mat-list-icon></mat-icon>£100
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.maxPrice <= 150" disabled>
+    <mat-icon mat-list-icon></mat-icon>£150
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.maxPrice <= 200" disabled>
+    <mat-icon mat-list-icon></mat-icon>£200
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.maxPrice <= 250" disabled>
+    <mat-icon mat-list-icon></mat-icon>£250
+  </button>
+</mat-menu>
+<mat-menu #toMenu="matMenu" [overlapTrigger]="false" panelClass="menu-panel">
+  <button mat-menu-item filter-criteria (click)="search.MaxPrice(9999)">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 9999) ? 'check' : ''}}</mat-icon>No max{{screenSize!=='xs'?'imum':''}} price
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.minPrice>=50" disabled>
+    <mat-icon mat-list-icon></mat-icon>£50
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.minPrice >= 100" disabled>
+    <mat-icon mat-list-icon></mat-icon>£100
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.minPrice>=150" disabled>
+    <mat-icon mat-list-icon></mat-icon>£150
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.minPrice>=200" disabled>
+    <mat-icon mat-list-icon></mat-icon>£200
+  </button>
+  <button mat-menu-item filter-criteria *ngIf="criteria?.minPrice>=250" disabled>
+    <mat-icon mat-list-icon></mat-icon>£250
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MaxPrice(50)" *ngIf="criteria?.minPrice<50">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 50) ? 'check' : ''}}</mat-icon>£50
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MaxPrice(100)" *ngIf="criteria?.minPrice<100">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 100) ? 'check' : ''}}</mat-icon>£100
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MaxPrice(150)" *ngIf="criteria?.minPrice<150">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 150) ? 'check' : ''}}</mat-icon>£150
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MaxPrice(200)" *ngIf="criteria?.minPrice<200">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 200) ? 'check' : ''}}</mat-icon>£200
+  </button>
+  <button mat-menu-item filter-criteria (click)="search.MaxPrice(250)" *ngIf="criteria?.minPrice<250">
+    <mat-icon mat-list-icon>{{(criteria?.maxPrice === 250) ? 'check' : ''}}</mat-icon>£250
+  </button>
+</mat-menu>
+<ng-container *ngIf="(searchControl.value?.tag && criteria)">
+  <div found *ngIf="selectedLocation && selectedLocation.count>0"><b>{{selectedLocation.count}}</b> matching Spa Voucher venue{{selectedLocation.count===1 ? '' :'s'}} found from <b>{{selectedLocation.near | number:'0.1-1'}}</b> miles away.</div>
+  <div found *ngIf="selectedLocation && selectedLocation.count===0"><b>No matching Spa Voucher venues found.</b></div>
+  <div criteria>
+    <button mat-button disableRipple="true" [matMenuTriggerFor]="typeMenu" yPosition="below">
+      <div> {{(criteria?.maxNights===99 && criteria?.minNights===0) ? 'Any Package' : ''}} {{(criteria?.maxNights===0) ? 'Spa Days' : ''}} {{(criteria?.minNights>0) ? 'Spa Breaks' : ''}} </div>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <div style="width:100%;height: 1px;" *ngIf="screenSize==='xs'"></div>
+    <button mat-button disableRipple="true" [matMenuTriggerFor]="distMenu" yPosition="below">
+      <div> Within {{criteria?.maxDistance}} miles </div>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <div style="width:100%;height: 1px;" *ngIf="screenSize==='xs'"></div>
+    <div style="width:100%;height: 1px;" *ngIf="screenSize==='sm'"></div>
+    <button mat-button disableRipple="true" [matMenuTriggerFor]="fromMenu" *ngIf="criteria?.minPrice === 0" yPosition="below">
+      <div>No min{{screenSize!=='xs'?'imum':''}} price </div>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <button mat-button disableRipple="true" [matMenuTriggerFor]="fromMenu" *ngIf="criteria?.minPrice > 0" yPosition="below">
+      <div>Price from £ {{criteria?.minPrice}} </div>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <button mat-button disableRipple="true" [matMenuTriggerFor]="toMenu" *ngIf="criteria?.maxPrice === 9999" yPosition="below">
+      <div>No max{{screenSize!=='xs'?'imum':''}} price </div>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+    <button mat-button disableRipple="true" [matMenuTriggerFor]="toMenu" *ngIf="criteria?.maxPrice <= 250" yPosition="below">
+      <div>Price to £ {{criteria?.maxPrice}} </div>
+      <mat-icon>arrow_drop_down</mat-icon>
+    </button>
+  </div>
+  <br>
+  <mat-divider></mat-divider>
+</ng-container>
+</ng-container>

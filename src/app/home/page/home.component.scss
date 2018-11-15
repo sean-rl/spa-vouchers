@@ -1,0 +1,30 @@
+div[spa-voucher-news-page] {
+  margin : 10px 0 0 0;
+    div[content] {
+      display: flex;
+      justify-content: center;
+      align-content: flex-start;
+      flex-direction: row;
+      flex-wrap: wrap;
+
+      home-article-tile {
+        display: grid;
+        flex: 1 1 auto;
+        max-width: 320px;
+        height: 320px;
+        margin: 10px;
+      }
+    }
+
+    @media(min-width: 750px) {
+      display: grid;
+      grid-template-columns: minmax(10px, auto) minmax(280px, 960px) minmax(10px, auto);
+      grid-template-rows: auto;
+
+      div[content] {
+        grid-column: 2;
+        grid-row: 1;
+      }
+    }
+
+  }

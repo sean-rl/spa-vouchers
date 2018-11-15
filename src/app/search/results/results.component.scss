@@ -1,0 +1,17 @@
+[flex-grid] {
+  display: flex;
+  justify-content: center;
+  align-content: flex-start;
+  flex-direction: row;
+  flex-wrap: wrap;
+  min-height: 100vh;
+  margin: 8px;
+
+  venue-tile {
+    display: grid;
+    flex: 1 1 auto;
+    max-width: 290px;
+    height: auto;
+    margin: 8px;
+  }
+}

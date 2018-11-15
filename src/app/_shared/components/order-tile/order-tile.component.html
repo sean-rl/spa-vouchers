@@ -1,0 +1,26 @@
+<div spa-voucher-order-tile>
+  <div month>
+    <div>{{(order && order.created && order.created.toDate ? order?.created.toDate() : order?.created) | date:'MMMM'}}</div>
+  </div>
+  <div day>
+    <div>{{(order && order.created && order.created.toDate ? order?.created.toDate() : order?.created) | date:'d'}}</div>
+  </div>
+  <div year>
+    <div>{{(order && order.created && order.created.toDate ? order?.created.toDate() : order?.created) | date:'yyyy'}}</div>
+  </div>
+  <div email>
+    <div>{{order?.email}}</div>
+  </div>
+  <div name>
+    <div>{{order?.name}}</div>
+  </div>
+  <div ref>
+    <div>{{order?.ref}}</div>
+  </div>
+  <div codes>
+    <div>{{order?.items?.length}} Voucher<span *ngIf="order?.items?.length>1">s</span> : <span *ngFor="let item of order.items; let l=last">{{item?.voucherCode}}<span *ngIf="!l">, </span></span></div>
+  </div>
+  <div value>
+    <div>£{{order?.value/100 | number:'0.0-0' }}</div>
+  </div>
+</div>

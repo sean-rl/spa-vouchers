@@ -1,0 +1,5 @@
+<ng-container *ngIf="bookings">
+  <ng-container *ngFor="let booking of bookings;let f=first">
+    <booking-tile [class.first]="!f" [booking]="booking"></booking-tile>
+  </ng-container>
+</ng-container>

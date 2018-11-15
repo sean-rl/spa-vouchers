@@ -1,0 +1,74 @@
+div[spa-voucher-booking-tile] {
+  display: grid;
+  grid-template-columns: 80px minmax(140px, 440px) 80px;
+  grid-column-gap: 8px;
+
+  grid-template-rows: auto auto auto;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, .35);
+}
+:host-context(.first) div[spa-voucher-booking-tile] {
+  border-top:none;
+  }
+div[month] {
+  grid-column: 1 / 2;
+  grid-row: 1 / 2;
+  display: grid;
+  font: 300 12px/20px Raleway, sans-serif;
+  justify-items: center;
+  align-items: center;
+}
+
+div[day] {
+  grid-column: 1 / 2;
+  grid-row: 2 / 3;
+  display: grid;
+  font: 600 30px/32px Raleway, sans-serif;
+  justify-items: center;
+  align-items: center;
+}
+
+div[year] {
+  grid-column: 1 / 2;
+  grid-row: 3 / 4;
+  display: grid;
+  font: 300 12px/20px Raleway, sans-serif;
+  justify-items: center;
+  align-items: center;
+}
+
+div[venue] {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: grid;
+  justify-items: start;
+  align-items: center;
+  font: 300 14px/18px Raleway, sans-serif;
+}
+
+div[address] {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: grid;
+  font: 300 12px/20px Raleway, sans-serif;
+  justify-items: start;
+  align-items: center;
+}
+
+div[package] {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: grid;
+  justify-items: start;
+  align-items: center;
+  font: 300 14px/18px Raleway, sans-serif;
+}
+
+div[price] {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  font: 600 30px/32px Raleway, sans-serif;
+}

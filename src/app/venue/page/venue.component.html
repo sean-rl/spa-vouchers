@@ -1,0 +1,40 @@
+<ng-container *ngIf="(venue$ | async) as venue">
+  <ui-banner>
+    <div>{{venue?.name}}</div>
+    <div side>
+      <mat-icon *ngFor="let ratingicon of getStars(venue?.rate)">{{ratingicon}}</mat-icon>
+    </div>
+  </ui-banner>
+  <ng-container *ngIf="(selectedPackage$ | async) as selectedPackage">
+    <venue-booking [selectedPackage]="selectedPackage" [venue]="venue?.id" [venueName]="venue?.name" [venueAddr]="venue?.address" [venuePack]="selectedPackage?.package_name"></venue-booking>
+  </ng-container>
+  <div spa-voucher-venue-page>
+    <div packages>
+      <div>
+        <div *ngFor="let package of venue?.pcks; trackBy:trackByPackage">
+          <venue-package [packageId]="package?.id" [selectedPackageId]="selectedPackageId"></venue-package>
+        </div>
+      </div>
+    </div>
+    <div content>
+      <div carousel>
+        <div>
+          <slideshow [autoPlay]="true" [backgroundSize]="'contain'" [backgroundRepeat]="'no-repeat'" [autoPlayInterval]="7000" [showArrows]="true" [showDots]=true [imageUrls]="venue?.imgs | v_imgs_md" [lazyLoad]="venue?.imgs?.length > 1" [autoPlayWaitForLazyLoad]="true"></slideshow>
+        </div>
+      </div>
+      <div info>
+        <div>
+          <venue-info *ngFor="let info of venue?.info" [info]="info"></venue-info>
+        </div>
+      </div>
+      <div hightlights>
+        <div>
+          <ng-container *ngFor="let highlight of venue?.high;let breaker=even">
+            <div breaker *ngIf="breaker"></div>
+            <venue-highlight [highlight]="highlight"></venue-highlight>
+          </ng-container>
+        </div>
+      </div>
+    </div>
+  </div>
+</ng-container>

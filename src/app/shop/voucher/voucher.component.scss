@@ -1,0 +1,85 @@
+div[spa-voucher-shop-item] {
+  display: grid;
+  grid-template-columns: auto minmax(300px, 600px) auto;
+  grid-template-rows: auto 10px auto 10px auto 10px auto 10px auto;
+}
+
+
+div[recipient] {
+  grid-column: 2 / 3;
+  grid-row: 5 / 6;
+  display: grid;
+}
+
+div[value] {
+  grid-column: 2 / 3;
+  grid-row: 7 / 8;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}
+
+div[type] {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: flex;
+  flex-direction: row;
+  justify-content: stretch;
+  align-items: flex-start;
+  border-bottom: 1px solid rgba(0, 0, 0, .10);
+  width: 100%;
+  flex: 0 0 auto;
+
+  [title] {
+    padding: 10px;
+    text-align: center;
+    flex: 1 0 auto;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    color: rgba(0, 0, 0, .68);
+    background-color: transparent;
+
+    &.active {
+      color: rgba(255, 255, 255, .8);
+      background-color: rgba(255, 64, 129, .75);
+      border-bottom: 2px solid rgba(255, 64, 129, 1);
+    }
+  }
+
+}
+
+div[description] {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: grid;
+  box-sizing: border-box;
+  margin: 16px 0px;
+  border: 2px #00B7A9 dashed;
+  background-color: rgba(0, 183, 168, 0.15);
+  width: 100%;
+  padding: 16px;
+  border-radius: 5px;
+
+  div div {
+    font: 300 14px/18px Raleway, sans-serif;
+    margin: 0px 0px 16px 0px;
+  }
+
+  div div:first-child {
+    font: 400 16px/20px Raleway, sans-serif;
+  }
+
+  div div:last-child {
+    margin-bottom: 0px;
+  }
+}
+
+div[action] {
+  grid-column: 2 / 3;
+  grid-row: 9 / 10;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+}

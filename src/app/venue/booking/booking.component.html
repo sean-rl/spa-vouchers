@@ -1,0 +1,87 @@
+<ng-container *ngIf="(venueBooking$ | async) as venueBooking">
+  <div spa-voucher-venue-booking *ngIf="!venueBooking?.submitted">
+    <div close>
+      <button mat-stroked-button [routerLink]="['../']" color="warn">
+        <mat-icon>close</mat-icon> <span>CLOSE</span>
+      </button>
+    </div>
+    <div package>
+      <venue-booking-package [packageId]="selectedPackage.id" ></venue-booking-package>
+    </div>
+    <div calendar>
+      <venue-booking-calendar [selectedPackage]="selectedPackage" (dateSelected)="setBookingDate($event)" (valueSelected)="setBookingValue($event)"></venue-booking-calendar>
+    </div>
+    <div detail>
+      <venue-booking-detail [venueBooking]="venueBooking" (updated)="setDetail($event)"></venue-booking-detail>
+    </div>
+    <div submit *ngIf="!venueBooking.valid">
+      <button mat-raised-button color="accent" disabled>Book Now</button>
+    </div>
+    <div submit *ngIf="venueBooking.valid">
+      <button mat-raised-button color="accent" (click)="submitBooking()">Book Now</button>
+    </div>
+  </div>
+  <div spa-voucher-venue-booking *ngIf="venueBooking?.submitted">
+    <div close>
+      <button mat-stroked-button [routerLink]="['../']" color="warn">
+        <mat-icon>close</mat-icon> <span>CLOSE</span>
+      </button>
+    </div>
+    <div summary>
+        <button mat-flat-button [routerLink]="['../']" [style.background-color]="'rgba(0,175,100)'">
+          <div heading>Booking Completed</div>
+        </button>
+        <br>
+        <venue-booking-package [packageId]="selectedPackage.id"  no-pricing></venue-booking-package>
+        <div month>{{venueBooking?.date | date:'MMMM'}}</div>
+        <div day>{{venueBooking?.date | date:'d'}}</div>
+        <div year>{{venueBooking?.date | date:'yyyy'}}</div>
+        <br>
+        <div label>BOOKING REFERENCE</div>
+        <div reference>{{venueBooking?.id}}</div>
+        <br>
+    </div>
+    <div submit *ngIf="venueBooking.valid">
+      <button mat-raised-button color="accent" (click)="createBooking()">Create Another Booking</button>
+    </div>
+  </div>
+</ng-container>
+<!-- <div wrapper>
+  <ng-container *ngIf="id===null && saved===false; else elseReferenceTemplate">
+    <div fields>
+      <mat-form-field>
+        <mat-label>Name</mat-label>
+        <input matInput type="text" #name required [(ngModel)]="submit.name">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Telephone</mat-label>
+        <input matInput type="tel" #phone [(ngModel)]="submit.phone">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Email</mat-label>
+        <input matInput type="email" #email required [(ngModel)]="submit.email">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Voucher</mat-label>
+        <input matInput type="text" #voucher [(ngModel)]="submit.voucher">
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Request</mat-label> <textarea matInput type="text" #request [(ngModel)]="submit.request"></textarea>
+      </mat-form-field>
+    </div>
+    <div submit>
+      <button mat-raised-button color="accent" (click)="submitBooking()" [disabled]="!isValid">Book Now</button>
+    </div>
+  </ng-container>
+  <ng-template #elseReferenceTemplate>
+    <ng-container *ngIf="!saved; else elseSavedTemplate">
+      <mat-spinner color="accent"></mat-spinner>
+    </ng-container>
+    <ng-template #elseSavedTemplate>
+      <div completed>
+        <div heading>Booking Completed</div>
+        <div>Your Reference : {{id}}</div>
+      </div>
+    </ng-template>
+  </ng-template>
+</div> -->

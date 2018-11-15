@@ -1,0 +1,83 @@
+:host {
+  margin: 0px 0px 16px 0px;
+  padding: 0px 0px 16px 0px;
+  border-bottom: 1px solid rgba(0, 0, 0, .1);
+}
+
+div[spa-voucher-news-article] {
+  display: grid;
+  grid-template-columns: minmax(80px, 260px) minmax(200px, 700px);
+  grid-template-rows: auto auto auto auto;
+  grid-gap: 16px 16px;
+}
+
+
+div[image] {
+  grid-column: 1 / 2;
+  grid-row: 1 / 5;
+  display: block;
+
+  div {
+    height: 100%;
+    width: 100%;
+    overflow: hidden;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+  }
+}
+
+div[tag] {
+  grid-column: 2 / 3;
+  grid-row: 1 / 2;
+  display: grid;
+  font: 100 12px/16px Raleway, sans-serif;
+  color: #ff4080;
+  text-transform: uppercase;
+}
+
+div[heading] {
+  grid-column: 2 / 3;
+  grid-row: 2 / 3;
+  display: grid;
+  font: 600 22px/24px Raleway, sans-serif;
+}
+
+div[about] {
+  grid-column: 2 / 3;
+  grid-row: 3 / 4;
+  display: grid;
+  text-align: justify;
+  font: 300 14px/18px Raleway, sans-serif;
+}
+
+div[summary] {
+  grid-column: 2 / 3;
+  grid-row: 4 / 5;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-content: center;
+  font: 100 12px/16px Raleway, sans-serif;
+
+  div {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-content: center;
+
+    mat-icon {
+      height: 16px;
+      width: 16px;
+      font-size: 16px;
+      opacity: .5;
+      margin-right: 4px;
+    }
+
+  }
+}
+
+:host-context(.xs) div[summary],
+:host-context(.sm) div[summary] {
+  display: none;
+}

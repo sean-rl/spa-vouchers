@@ -1,0 +1,23 @@
+div[spa-vouchers-with-actions] {
+  display: grid;
+  grid-template-columns: minmax(250px, 550px) 10px 40px;
+  grid-template-rows: auto auto;
+}
+
+div[voucher-tile] {
+  grid-column: 1 / 2;
+  grid-row: 1 / 3;
+  display: grid;
+}
+
+div[edit] {
+  grid-column: 3 / 4;
+  grid-row: 1 / 2;
+  display: grid;
+}
+
+div[remove] {
+  grid-column: 3 / 4;
+  grid-row: 2 / 3;
+  display: grid;
+}

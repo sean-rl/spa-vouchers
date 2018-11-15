@@ -1,0 +1,96 @@
+div[spa-voucher-order-tile] {
+  display: grid;
+  grid-template-columns: 80px minmax(140px,440px) 80px;  grid-column-gap: 8px;
+
+  grid-template-rows: auto auto auto auto;
+  padding: 8px;
+  border: 1px solid rgba(0, 0, 0, .35);
+
+
+}
+:host-context(.first) div[spa-voucher-order-tile] {
+  border-top:none;
+  }
+
+div[month] {
+  grid-column: 1 / 2;
+  grid-row: 1;
+  display: grid;
+
+
+  font: 300 12px/20px Raleway,sans-serif;
+  justify-items: center;
+  align-items: center;
+}
+
+div[day] {
+  grid-column: 1 / 2;
+  grid-row: 2 / 4;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  font: 600 30px/32px Raleway,sans-serif;
+
+}
+
+div[year] {
+  grid-column: 1 / 2;
+  grid-row: 4 ;
+  display: grid;
+
+
+  font: 300 12px/20px Raleway,sans-serif;
+  justify-items: center;
+  align-items: center;
+}
+
+div[email] {
+  grid-column: 2 / 3;
+  grid-row: 1 ;
+  display: grid;
+
+
+
+}
+
+div[name] {
+  grid-column: 2 / 3;
+  grid-row: 2 ;
+  display: grid;
+
+
+  font : 300 12px/20px Raleway,sans-serif;
+
+}
+
+div[ref] {
+  grid-column: 2 / 3;
+  grid-row: 3 ;
+  display: grid;
+
+
+
+}
+div[codes] {
+  grid-column: 2 / 3;
+  grid-row: 4 ;
+  font : 100 12px/14px Raleway,sans-serif;
+  display: grid;
+
+  justify-items: end;
+  align-items: center;
+  margin-top: 8px;
+  border-top: 1px solid rgba(0, 0, 0, .35);
+
+
+}
+
+div[value] {
+  grid-column: 3 / 4;
+  grid-row: 1 / 5;
+  display: grid;
+  justify-items: center;
+  align-items: center;
+  font: 600 30px/32px Raleway,sans-serif;
+
+}

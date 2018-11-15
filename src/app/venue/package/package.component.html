@@ -1,0 +1,23 @@
+<ng-container *ngIf="(package$ | async) as package">
+  <div spa-voucher-package *ngIf="selectedPackageId===null || packageId!==selectedPackageId">
+    <div name>
+      <div>{{package?.package_name}}</div>
+    </div>
+    <div indicators>
+      <div></div>
+    </div>
+    <div markdown>
+      <markdown [data]="package?.package_description" ngPreserveWhitespaces></markdown>
+    </div>
+    <div pricing>
+      <div day-price *ngFor="let price of package?.pricing;let day_number=index">
+        <div weekday>{{['Mon','Tue','Wed','Thu','Fri','Sat','Sun'][day_number]}}</div>
+        <div price *ngIf="price">£{{price | number:'0.0-0'}}</div>
+        <div unavailable *ngIf="!price">-</div>
+      </div>
+    </div>
+    <div action *ngIf="selectedPackageId !== 'clear selected'">
+      <button mat-flat-button [routerLink]="[(selectedPackageId ? '../' : './'),packageId]" color="accent">Select</button>
+    </div>
+  </div>
+</ng-container>

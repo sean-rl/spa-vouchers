@@ -1,0 +1,27 @@
+<ui-banner>Shop your <b>Spa Voucher</b> experiences</ui-banner>
+<div spa-voucher-shop>
+  <div intro>
+    <div>Spa Vouchers are available to purchase at the monetary value of your choice on literally 1000's of different Spa Packages all over the UK. 100% of the voucher value will be applied to the chosen Spa Day, Spa Break or Spa Treatment of the recipients choice and all vouchers are valid for 12 months.</div>
+    <div>Spa Vouchers can be purchased online or over the telephone by calling 01782 409 617. To purchase a voucher please first select the type of voucher that suits you, enter the amount, your message and if its an E-Voucher the date on which you would like to it be delivered.</div>
+  </div>
+  <div item>
+    <div *ngIf="!(orderPaid$ | async)">
+      <shop-voucher></shop-voucher>
+    </div>
+  </div>
+  <div items>
+    <div *ngIf="(orderItems$ | async) as orderItems">
+      <shop-vouchers [orderItems]="orderItems"></shop-vouchers>
+    </div>
+  </div>
+  <div payment>
+    <div *ngIf="!(orderPaid$ | async)">
+      <ng-container *ngIf="(orderId$ | async) as orderId;">
+        <ng-container *ngIf="(orderAmount$ | async) as orderAmount">
+          <shop-payment [paymentAmount]="orderAmount" [paymentMetadata]="{order : orderId}"></shop-payment>
+        </ng-container>
+      </ng-container>
+    </div>
+    <div *ngIf="(orderPaid$ | async)">ORDER COMPLETE </div>
+  </div>
+</div>

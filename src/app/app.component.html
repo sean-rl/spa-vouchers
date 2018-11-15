@@ -1,0 +1,28 @@
+<div spa-voucher-header [ngClass]="screenSize">
+  <div wrapper>
+    <div logo [routerLink]="'/'">
+      <img  src="../../assets/Spa_Vouchers-logo-std.svg" alt="" [style.width.px]="screenSize==='xs' ? 73 : screenSize==='sm' ? 140 : 210">
+    </div>
+    <div navigation>
+      <mat-toolbar-row app-tabs>
+        <nav mat-tab-nav-bar color="accent" [backgroundColor]="''">
+          <div spacer></div>
+          <ng-container *ngIf="screenSize==='xs' || screenSize==='sm'">
+            <ng-container *ngFor="let link of navLinks" >
+              <a mat-tab-link [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive" *ngIf="link.xslabel"> {{ link.xslabel | uppercase}} </a>
+              <a mat-tab-link icon [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive" *ngIf="link.xsicon"><mat-icon>{{link.xsicon}}</mat-icon></a>
+            </ng-container>
+          </ng-container>
+          <ng-container *ngIf="screenSize!=='xs' && screenSize!=='sm'">
+            <ng-container *ngFor="let link of navLinks" >
+              <a mat-tab-link [routerLink]="link.path" routerLinkActive #rla="routerLinkActive" [active]="rla.isActive"> {{ link.label | uppercase}} </a>
+            </ng-container>
+          </ng-container>
+        </nav>
+      </mat-toolbar-row>
+    </div>
+  </div>
+</div>
+<div [ngClass]="screenSize">
+<router-outlet></router-outlet>
+</div>

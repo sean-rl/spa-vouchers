@@ -1,0 +1,51 @@
+@import '~@angular/material/theming';
+
+$custom-typography: mat-typography-config(
+  $font-family: '"Raleway", sans-serif',
+  $display-4: mat-typography-level(68px, 68px, 700),
+  $display-3: mat-typography-level(56px, 56px, 600),
+  $display-2: mat-typography-level(45px, 48px, 700),
+  $display-1: mat-typography-level(34px, 40px, 600),
+  $headline: mat-typography-level(30px, 32px, 600),
+  $title: mat-typography-level(26px, 28px, 400),
+  $subheading-2: mat-typography-level(22px, 24px, 300),
+  $subheading-1: mat-typography-level(18px, 20px, 300),
+  $body-2: mat-typography-level(16px, 20px, 400),
+  $body-1: mat-typography-level(14px, 18px, 300),
+  $caption: mat-typography-level(12px, 20px, 300),
+  $button: mat-typography-level(14px, 14px, 600),
+  // Line-height must be unit-less fraction of the font-size.
+  $input: mat-typography-level(inherit, 1.125, 400)
+);
+
+@include mat-base-typography($custom-typography);
+@include angular-material-typography($custom-typography);
+@include mat-core($custom-typography);
+
+// Define a theme.
+$primary: mat-palette($mat-indigo);
+$accent:  mat-palette($mat-pink, A200, A100, A400);
+
+$theme: mat-light-theme($primary, $accent);
+
+// Include all theme styles for the components.
+  @include mat-core-theme($theme);
+  // @include mat-badge-theme($theme);
+  @include mat-button-theme($theme);
+  // @include mat-card-theme($theme);
+  // @include mat-checkbox-theme($theme);
+  // @include mat-chips-theme($theme);
+  // @include mat-dialog-theme($theme);
+  @include mat-divider-theme($theme);
+  @include mat-form-field-theme($theme);
+  // @include mat-grid-list-theme($theme);
+  @include mat-icon-theme($theme);
+  @include mat-input-theme($theme);
+  @include mat-list-theme($theme);
+  @include mat-menu-theme($theme);
+  // @include mat-progress-bar-theme($theme);
+  @include mat-progress-spinner-theme($theme);
+  @include mat-select-theme($theme);
+  @include mat-tabs-theme($theme);
+  @include mat-toolbar-theme($theme);
+

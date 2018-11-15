@@ -1,0 +1,36 @@
+<div spa-vouchers-venue-tile>
+  <div image><img [src]="venue?.id | v_img_id" alt=""></div>
+    <div name>
+      <div>{{venue?.name | titlecase}}</div>
+    </div>
+    <div address>
+      <div>{{venue?.street}}{{venue?.street && venue?.town ? ', ' : ''}}{{venue?.town ? venue?.town : ''}}</div>
+    </div>
+    <div distance>
+      <div *ngIf="venue?.distance">{{venue?.distance | number:'1.1-1'}} miles</div>
+    </div>
+    <div available>
+      <div>{{venue?.availablepcks ? venue?.availablepcks?.length : venue?.pcks?.length}} available packages <ng-container *ngIf="venue?.availablepcks && venue?.availablepcks?.length < venue?.pcks?.length"><small> of</small> {{venue?.pcks?.length}}</ng-container>
+      </div>
+    </div>
+    <div rating>
+      <div>{{venue?.rate | number:'1.1-1'}}</div>
+    </div>
+    <div break>
+      <div [style.opacity]="venue?.breakpcks?.length ? 1 : 0">breaks from</div>
+    </div>
+    <div day>
+      <div  [style.opacity]="venue?.daypcks?.length ? 1 : 0">days from</div>
+    </div>
+    <div breakprice>
+      <div *ngIf="venue?.breakpcks?.length>0">£{{venue?.breakpcks[0]?.fromPrice | number:'1.0-0'}}</div>
+    </div>
+    <div stars>
+        <div>
+            <mat-icon *ngFor="let ratingicon of getStars(venue?.rate)">{{ratingicon}}</mat-icon>
+          </div>
+    </div>
+    <div dayprice>
+      <div *ngIf="venue?.daypcks?.length>0">£{{venue?.daypcks[0]?.fromPrice | number:'1.0-0'}}</div>
+    </div>
+  </div>

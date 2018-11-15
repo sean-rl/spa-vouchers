@@ -1,0 +1,11 @@
+<ng-container *ngIf="featuredVenues && featuredVenues.length && featuredVenues.length>0">
+  <ui-title>FEATURED VENUES</ui-title>
+</ng-container>
+<div flex-grid>
+  <ng-container *ngFor="let venue of searchVenues; trackBy:trackByVenues">
+    <venue-tile [venue]="venue" [routerLink]="'/venue/'+venue?.dash"></venue-tile>
+  </ng-container>
+  <ng-container *ngFor="let venue of featuredVenues; trackBy:trackByVenues">
+    <venue-tile [venue]="venue" [routerLink]="'/venue/'+venue?.dash"></venue-tile>
+  </ng-container>
+</div>

@@ -1,0 +1,17 @@
+:host {
+
+  text-align: center;
+
+  h2 {
+    font-weight: 100;
+  }
+
+  div[underscore] {
+    width: 33px;
+    height: 2px;
+    background-color: #ff4080;
+    margin: auto;
+    margin-bottom: 18px;
+    margin-top: -14px;
+  }
+}

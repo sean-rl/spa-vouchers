@@ -1,0 +1,36 @@
+<ng-container *ngIf="userLoggedIn$ | async">
+  <ui-banner>Welcome to your <b>Spa Voucher</b> account</ui-banner>
+  <div spa-voucher-account>
+    <div signout>
+      <div>
+        <button mat-flat-button color="accent" (click)="logout()">Sign Out</button></div>
+    </div>
+    <div details>
+      <ui-title>ABOUT</ui-title>
+      <div *ngIf="userAccount$ | async as userAccount">
+        <account-detail [userAccount]="userAccount" (updated)="updateUserAccount($event)"></account-detail>
+      </div>
+    </div>
+    <div bookings>
+      <ui-title>BOOKINGS</ui-title>
+      <div *ngIf="(userBookings$ | async) as userBookings">
+        <account-bookings [bookings]="userBookings"></account-bookings>
+      </div>
+    </div>
+    <div vouchers>
+      <ui-title>VOUCHERS</ui-title>
+      <div *ngIf="(userVouchers$ | async) as userVouchers">
+        <account-vouchers [vouchers]="userVouchers"></account-vouchers>
+      </div>
+    </div>
+    <div orders>
+      <ui-title>ORDERS</ui-title>
+      <div *ngIf="(userOrders$ | async) as userOrders">
+        <account-orders [orders]="userOrders"></account-orders>
+      </div>
+    </div>
+  </div>
+</ng-container>
+<ng-container *ngIf="!(userLoggedIn$ | async)">
+  <account-login></account-login>
+</ng-container>

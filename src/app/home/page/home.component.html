@@ -1,0 +1,19 @@
+<!-- <ui-banner>Latest News</ui-banner> -->
+<div spa-voucher-news-page>
+  <div content>
+        <home-article-tile *ngFor="let article of (headlines$ | async)" [article]="article"></home-article-tile>
+        <home-article-tile *ngFor="let article of (articles$ | async)" [article]="article"></home-article-tile>
+  </div>
+  <!-- <div featured>
+    <div>
+      <ng-container *ngIf="(featured$ | async) as featuredVenues">
+        <ng-container *ngIf="featuredVenues && featuredVenues.length && featuredVenues.length>0 ;">
+          <ui-title>FEATURED VENUES</ui-title>
+          <ng-container *ngFor="let venue of featuredVenues">
+            <venue-tile [venue]="venue" [routerLink]="'/venue/'+venue?.dash"></venue-tile>
+          </ng-container>
+        </ng-container>
+      </ng-container>
+    </div>
+  </div> -->
+</div>

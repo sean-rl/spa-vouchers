@@ -1,0 +1,24 @@
+<mat-form-field>
+  <input matInput placeholder="Payee Name" type="text" class="form-control" id="name" [(ngModel)]="name" required /> </mat-form-field>
+<mat-form-field>
+  <input matInput placeholder="Payee Email" type="email" class="form-control" id="email" [(ngModel)]="email" required /> </mat-form-field>
+  <mat-form-field>
+      <input matInput placeholder="Reference" type="text" class="form-control" id="reference" [(ngModel)]="ref" /> </mat-form-field>
+    <div buy-value *ngIf="paymentAmount>0">
+  <div label>Payment Value</div>
+  <div amount> {{ paymentAmount | stripe | currency:'GBP' }} </div>
+</div>
+<fieldset>
+  <form #paymentForm="ngForm" (ngSubmit)="formHandler()" class="checkout">
+    <div class="form-row">
+      <!-- <label for="card-info">Pay with Credit or Debit Card</label> -->
+      <div id="card-element" #cardElement></div>
+      <div id="card-errors" class="help is-danger" role="alert" *ngIf="formError">{{ formError }}</div>
+    </div>
+    <div>
+      <button mat-raised-button type="submit" [disabled]="!formComplete || loading" [class.is-loading]="loading">
+        <span>Make Payment</span>
+      </button>
+    </div>
+  </form>
+</fieldset>

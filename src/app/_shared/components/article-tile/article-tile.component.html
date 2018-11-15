@@ -1,0 +1,29 @@
+<div spa-voucher-news-article>
+  <div image>
+    <div *ngIf="article?.image && article.image!==''" [style.background-image]="imgUrl('url('+(article?.image | news_img)+')')"></div>
+    <div *ngIf="!(article?.image && article.image!=='') && article?.venue" [style.background-image]="imgUrl('url('+(article?.venue | v_img_id)+')')"></div>
+  </div>
+  <div tag>
+    <div>{{article?.tag}}</div>
+  </div>
+  <div heading>
+    <div>{{article?.heading}}</div>
+  </div>
+  <div about>
+    <div>{{article?.about}}</div>
+  </div>
+  <div summary>
+    <div>
+      <mat-icon>person</mat-icon>
+      <div>{{article?.author}}</div>
+    </div>
+    <div>
+      <mat-icon>watch_later</mat-icon>
+      <div>{{(article && article.published && article.published.toDate ? article.published.toDate() : article.published) | date:'dd MMMM yyyy'}}</div>
+    </div>
+    <div>
+      <mat-icon>comment</mat-icon>
+      <div><b>{{article?.comments?.length}} </b> <span>&nbsp;comment</span><span *ngIf="article?.comments?.length!==1">s</span></div>
+    </div>
+  </div>
+</div>

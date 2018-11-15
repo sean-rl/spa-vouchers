@@ -1,0 +1,19 @@
+  <mat-form-field>
+    <mat-label>Name</mat-label>
+    <input matInput type="text" #name required [(ngModel)]="venueBooking.name" (change)="updated.emit(venueBooking)">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Telephone</mat-label>
+    <input matInput type="tel" #phone [(ngModel)]="venueBooking.phone" (change)="updated.emit(venueBooking)">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Email</mat-label>
+    <input matInput type="email" #email required [(ngModel)]="venueBooking.email" (change)="updated.emit(venueBooking)">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Voucher</mat-label>
+    <input matInput type="text" #voucher [(ngModel)]="venueBooking.voucher" (change)="updated.emit(venueBooking)">
+  </mat-form-field>
+  <mat-form-field>
+    <mat-label>Request</mat-label> <textarea matInput cdkTextareaAutosize type="text" #request [(ngModel)]="venueBooking.request" (change)="updated.emit(venueBooking)"></textarea>
+  </mat-form-field>

@@ -1,0 +1,11 @@
+:host {
+  display: grid;
+  grid-template-columns: auto 300px auto;
+  margin-bottom: 10px;
+
+}
+
+mat-form-field {
+  grid-column: 2;
+
+}

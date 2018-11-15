@@ -1,0 +1,19 @@
+<ng-container *ngIf="orderItems">
+  <ng-container *ngFor="let orderItem of orderItems;let f=first">
+    <div spa-vouchers-with-actions [class.first]="!f">
+      <div voucher-tile>
+        <voucher-tile [voucher]="orderItem"></voucher-tile>
+      </div>
+      <div edit>
+        <div><button mat-icon-button color="primary">
+            <mat-icon>edit</mat-icon>
+          </button></div>
+      </div>
+      <div remove>
+        <div><button mat-icon-button color="warn">
+            <mat-icon>delete</mat-icon>
+          </button></div>
+      </div>
+    </div>
+  </ng-container>
+</ng-container>
